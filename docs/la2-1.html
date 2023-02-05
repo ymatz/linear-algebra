@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="松本佳彦" />
+  <title>線形代数入門（第2部）</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="lecnotes.css" />
+  <script>
+	MathJax = {
+		tex: {
+			macros: {
+				bm: ["{\\boldsymbol{#1}}",1]
+			}
+		}
+	};
+  </script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">線形代数入門（第2部）</h1>
+<p class="author">松本佳彦</p>
+</header>
+<h1 id="ベクトル空間">ベクトル空間</h1>
+<h2 id="ベクトル空間とは何か">ベクトル空間とは何か</h2>
+<p>線形代数学は数学やその応用全般にわたり利用される強力な道具である．その力の源泉は，線形代数がさまざまなものに適用可能なことにあるのだろう．これまでは「ベクトル」といえば数ベクトル（ないしそれと同一視できる平面ベクトル，空間ベクトル）のことだったが，実はもっと多種多様なものを「ベクトル」と考えることができて，その見方が実際に有用なのである．「ベクトル」と見なせるものの例としては，多項式，数列，関数を挙げることができる．また量子論では「物理系の状態とはベクトルである」と考える．</p>
+<p>そういった応用を見据えて，われわれは「ベクトル空間」（「ベクトル」の集まりのこと）を，具体的なものとしてではなく，次のように抽象的に定義する．</p>
+<section id="定義" class="dfn">
+<h3>定義</h3>
+<p><em>実ベクトル空間</em>とは次のような集合<span
+class="math inline">\(V\)</span>のことである．</p>
+<p>まず，<span
+class="math inline">\(V\)</span>には2種類の演算が定められていることを要請する．一つ目は<span
+class="math inline">\(V\)</span>の2元<span
+class="math inline">\(\bm{a}\)</span>，<span
+class="math inline">\(\bm{b}\)</span>に対し<span
+class="math inline">\(\bm{a}+\bm{b}\)</span>を対応させる演算である（<span
+class="math inline">\(\bm{a}+\bm{b}\)</span>を<span
+class="math inline">\(\bm{a}\)</span>と<span
+class="math inline">\(\bm{b}\)</span>の<em>和</em>とよぶ）．二つ目は<span
+class="math inline">\(V\)</span>の元<span
+class="math inline">\(\bm{a}\)</span>と実数<span
+class="math inline">\(k\)</span>に対し<span
+class="math inline">\(k\bm{a}\)</span>を対応させる演算である（<span
+class="math inline">\(k\bm{a}\)</span>を<span
+class="math inline">\(\bm{a}\)</span>の<em><span
+class="math inline">\(k\)</span>倍</em>とよぶ）．</p>
+<p>さらに，上記の演算は次の性質をもつ．</p>
+<ol type="i">
+<li><span
+class="math inline">\((\bm{a}+\bm{b})+\bm{c}=\bm{a}+(\bm{b}+\bm{c})\)</span>．</li>
+<li><span
+class="math inline">\(\bm{a}+\bm{b}=\bm{b}+\bm{a}\)</span>．</li>
+<li><span class="math inline">\(\bm{0}\)</span>と書き表される<span
+class="math inline">\(V\)</span>の特別な元（<em>零ベクトル</em>）があって，任意の<span
+class="math inline">\(\bm{a}\in V\)</span>に対し<span
+class="math inline">\(\bm{a}+\bm{0}=\bm{0}+\bm{a}=\bm{a}\)</span>．</li>
+<li><span class="math inline">\(k(l\bm{a})=(kl)\bm{a}\)</span>．</li>
+<li><span
+class="math inline">\((k+l)\bm{a}=k\bm{a}+l\bm{a}\)</span>．</li>
+<li><span
+class="math inline">\(k(\bm{a}+\bm{b})=k\bm{a}+k\bm{b}\)</span>．</li>
+<li><span class="math inline">\(1\bm{a}=\bm{a}\)</span>．</li>
+<li><span class="math inline">\(0\bm{a}=\bm{0}\)</span>．</li>
+</ol>
+</section>
+<p>上の定義に現れる「実数」という言葉を一斉に「複素数」に変えてもよい．その場合は<span
+class="math inline">\(V\)</span>を<em>複素ベクトル空間</em>とよぶ．さらに，実数や複素数とは異なる種類の数をもとにして，その数に関するベクトル空間を考えることもできる．</p>
+<p>線形代数の理論の大部分は，どんな数に関するベクトル空間についても同様に通用する．そういう場面では，わざわざ「実ベクトル空間」とか「複素ベクトル空間」とか言う必要はないので，単に「<em>ベクトル空間</em>」という言葉を用いる．またそのときは，考えている数全体の集合は<span
+class="math inline">\(\mathbb{K}\)</span>という文字で表すことにする．</p>
+<p>ベクトル空間<span
+class="math inline">\(V\)</span>の元を<em>ベクトル</em>という．これと対比する意味で，<span
+class="math inline">\(\mathbb{K}\)</span>の元のことを<em>スカラー</em>ということがある．（この言葉を用いて，<span
+class="math inline">\(k\bm{a}\)</span>をベクトル<span
+class="math inline">\(\bm{a}\)</span>の<em>スカラー倍</em>ともいう．）</p>
+<section id="注" class="rem">
+<h3>注</h3>
+<p>空集合はベクトル空間にはなりえない．なぜなら少なくとも零ベクトルが属しているからである．</p>
+</section>
+<section id="例1" class="ex">
+<h3>例1</h3>
+<p>数ベクトルの集合 <span class="math display">\[
+    \mathbb{R}^n=
+    \Set{
+        \begin{pmatrix}
+            x_1 \\ \vdots \\ x_n
+        \end{pmatrix}
+        |
+        x_1,\,\dotsc,\,x_n\in\mathbb{R}
+    }
+\]</span>
+は，通常どおりに和・スカラー倍を定めることで実ベクトル空間になる．同様に
+<span class="math display">\[
+    \mathbb{C}^n=
+    \Set{
+        \begin{pmatrix}
+            x_1 \\ \vdots \\ x_n
+        \end{pmatrix}
+        |
+        x_1,\,\dotsc,\,x_n\in\mathbb{C}
+    }
+\]</span> は複素ベクトル空間になる．</p>
+</section>
+<section id="例2" class="ex">
+<h3>例2</h3>
+<p>実数を係数とする<span
+class="math inline">\(x\)</span>の多項式すべてからなる集合は，通常どおりの多項式の和・スカラー倍によって実ベクトル空間になる．これを<span
+class="math inline">\(\mathbb{R}[x]\)</span>で表す．</p>
+</section>
+<section id="例3" class="ex">
+<h3>例3</h3>
+<p>実数の区間<span
+class="math inline">\(I\)</span>において定義された実数値関数すべてからなる集合は，和<span
+class="math inline">\(f+g\)</span>，スカラー倍<span
+class="math inline">\(kf\)</span>をそれぞれ<span
+class="math inline">\((f+g)(x)=f(x)+g(x)\)</span>，<span
+class="math inline">\((kf)(x)=kf(x)\)</span>によって定義すれば実ベクトル空間になる．これを<span
+class="math inline">\(F(I,\mathbb{R})\)</span>で表すことにする．</p>
+</section>
+<section id="例4" class="ex">
+<h3>例4</h3>
+<p>実数列（各項が実数であるような数列）すべてからなる集合は，和を <span
+class="math display">\[
+\set{x_n}+\set{y_n}=\set{x_n+y_n}
+\]</span> と定義し，スカラー倍を <span class="math display">\[
+k\set{x_n}=\set{kx_n}
+\]</span> と定義することで実ベクトル空間になる．これを<span
+class="math inline">\(S_\mathbb{R}\)</span>で表すことにする．</p>
+</section>
+<p>例2，例3，例4と同様にして複素ベクトル空間<span
+class="math inline">\(\mathbb{C}[x]\)</span>，<span
+class="math inline">\(F(I,\mathbb{C})\)</span>，<span
+class="math inline">\(S_\mathbb{C}\)</span>を定義することもできる．</p>
+<section id="例5" class="ex">
+<h3>例5</h3>
+<p><span
+class="math inline">\(V\)</span>をすべての正の実数からなる集合とする．
+<span class="math inline">\(V\)</span>において次のような変わった和<span
+class="math inline">\(\oplus\)</span>とスカラー倍<span
+class="math inline">\(\odot\)</span>を定義する： <span
+class="math display">\[
+x\oplus y=xy,\qquad
+k\odot x=x^k.
+\]</span> すると<span class="math inline">\(V\)</span>は<span
+class="math inline">\(\oplus\)</span>，<span
+class="math inline">\(\odot\)</span>に関して実ベクトル空間になる．このベクトル空間における零ベクトル<span
+class="math inline">\(\bm{0}\)</span>とは<span
+class="math inline">\(1\)</span>のことである．</p>
+</section>
+<section id="例6" class="ex">
+<h3>例6</h3>
+<p><span
+class="math inline">\(V=\set{\bm{0}}\)</span>はベクトル空間である．これを<em>自明なベクトル空間</em>とよぶことがある．</p>
+</section>
+<h2 id="部分空間">部分空間</h2>
+<p>ベクトル空間<span class="math inline">\(V\)</span>の部分集合<span
+class="math inline">\(W\)</span>が，<span
+class="math inline">\(V\)</span>に備わった演算を受け継ぐことでそれ自身ベクトル空間になることがある．このとき<span
+class="math inline">\(W\)</span>は<span
+class="math inline">\(V\)</span>の<em>部分空間</em>であるという言い方をする．部分空間を考えることによって，ベクトル空間の例をたくさん作れるようになる．</p>
+<section id="例2-1" class="ex">
+<h3>例2<span class="math inline">\(&#39;\)</span></h3>
+<p><span class="math inline">\(\mathbb{R}[x]\)</span>において，<span
+class="math inline">\(n\)</span>次以下の多項式だけからなる部分集合を<span
+class="math inline">\(\mathbb{R}[x]_n\)</span>と書くことにする．これは<span
+class="math inline">\(\mathbb{R}[x]\)</span>の部分空間である．</p>
+</section>
+<section id="例3-1" class="ex">
+<h3>例3<span class="math inline">\(&#39;\)</span></h3>
+<p>実数の区間<span
+class="math inline">\(I\)</span>において定義された実数値関数すべてからなるベクトル空間を<span
+class="math inline">\(F(I,\mathbb{R})\)</span>と書いたが，そのような関数のうちで連続なものすべてからなる部分集合を<span
+class="math inline">\(C(I,\mathbb{R})\)</span>と書く．これは<span
+class="math inline">\(F(I,\mathbb{R})\)</span>の部分空間である．</p>
+</section>
+<section id="例4-1" class="ex">
+<h3>例4<span class="math inline">\(&#39;\)</span></h3>
+<p><span
+class="math inline">\(S(\mathbb{R})\)</span>において，ある種の漸化式をみたす数列だけを集めて得られる部分集合が部分ベクトル空間になることがある．たとえば<span
+class="math inline">\(x_{n+2}=x_{n+1}+x_n\)</span>をみたす数列全部の集合は<span
+class="math inline">\(S(\mathbb{R})\)</span>の部分空間である．</p>
+</section>
+<p>与えられた部分集合が部分空間であるかどうかは，次の定理を用いて判定できる．</p>
+<section id="定理1.1" class="thm">
+<h3>定理1.1</h3>
+<p><span class="math inline">\(\mathbb{K}\)</span>上のベクトル空間<span
+class="math inline">\(V\)</span>の部分集合<span
+class="math inline">\(W\)</span>が<span
+class="math inline">\(V\)</span>の部分空間であるためには，次の条件がみたされることが必要十分である．</p>
+<ol type="i">
+<li><span class="math inline">\(V\)</span>の零ベクトルが<span
+class="math inline">\(W\)</span>にも属している．</li>
+<li><span class="math inline">\(\bm{a}\)</span>，<span
+class="math inline">\(\bm{b}\in W\)</span>ならば<span
+class="math inline">\(\bm{a}+\bm{b}\in W\)</span>．</li>
+<li><span class="math inline">\(\bm{a}\in W\)</span>，<span
+class="math inline">\(k\in\mathbb{K}\)</span>ならば<span
+class="math inline">\(k\bm{a}\in W\)</span>．</li>
+</ol>
+</section>
+<p>定理1.1を証明するために補題を用意する．</p>
+<section id="補題" class="lem">
+<h3>補題</h3>
+<p>ベクトル空間<span class="math inline">\(V\)</span>の零ベクトルを<span
+class="math inline">\(\bm{0}\)</span>と書く．そのとき，もし<span
+class="math inline">\(W\)</span>が<span
+class="math inline">\(V\)</span>の部分空間ならば，<span
+class="math inline">\(\bm{0}\in W\)</span>であって，さらに<span
+class="math inline">\(\bm{0}\)</span>が<span
+class="math inline">\(W\)</span>の零ベクトルでもある．</p>
+</section>
+<section id="証明" class="proof">
+<h3>証明</h3>
+<p><span
+class="math inline">\(W\)</span>はそれ自身ベクトル空間であることから空集合ではないので，ある<span
+class="math inline">\(\bm{a}\in W\)</span>をとることができる．この<span
+class="math inline">\(\bm{a}\)</span>に対し，<span
+class="math inline">\(W\)</span>は部分空間だから<span
+class="math inline">\((-1)\bm{a}\in W\)</span>でもある．したがって<span
+class="math inline">\(\bm{a}+(-1)\bm{a}\in W\)</span>でもあるのだが，
+<span class="math display">\[
+\bm{a}+(-1)\bm{a}=1\bm{a}+(-1)\bm{a}=(1+(-1))\bm{a}=0\bm{a}=\bm{0}.
+\]</span> これで<span class="math inline">\(\bm{0}\in
+W\)</span>がわかった．この<span
+class="math inline">\(\bm{0}\)</span>が<span
+class="math inline">\(W\)</span>の零ベクトルがみたすべき性質を満足するのは明らかだから，<span
+class="math inline">\(\bm{0}\)</span>は<span
+class="math inline">\(W\)</span>の零ベクトルでもある．</p>
+</section>
+<p>それでは定理1.1を証明しよう．</p>
+<section id="定理1.1の証明" class="proof">
+<h3>定理1.1の証明</h3>
+<p>3つの条件の必要性については，(ii)，(iii)は当然のことで，(i)は上記の補題で示した．</p>
+<p>十分性を証明する．(ii)，(iii)により，<span
+class="math inline">\(W\)</span>には<span
+class="math inline">\(V\)</span>から受け継いだ和・スカラー倍が確かに定義される．さらに(i)のおかげで，<span
+class="math inline">\(V\)</span>の零ベクトル<span
+class="math inline">\(\bm{0}\)</span>は<span
+class="math inline">\(W\)</span>にも属している．<span
+class="math inline">\(V\)</span>から受け継いだ<span
+class="math inline">\(W\)</span>の演算がベクトル空間の定義にある性質(i)–(viii)をみたせばよいのだが，これは（性質(iii)と性質(viii)における<span
+class="math inline">\(\bm{0}\)</span>としては<span
+class="math inline">\(V\)</span>の零ベクトルを採用することにすれば）もともと<span
+class="math inline">\(V\)</span>において(i)–(viii)が成立していたのだから当然のことである．</p>
+</section>
+<section id="注-1" class="rem">
+<h3>注</h3>
+<p>定理1.1において，条件(i)は次の条件で置き換えてもよい． (i<span
+class="math inline">\(&#39;\)</span>) <span
+class="math inline">\(W\)</span>は空集合ではない．</p>
+</section>
+<section id="例題" class="exercise">
+<h3>例題</h3>
+<p><span class="math inline">\(A\)</span>を<span
+class="math inline">\(m\times n\)</span>行列とする．そのとき <span
+class="math display">\[
+W=\set{\bm{x}\in\mathbb{R}^n|A\bm{x}=\bm{0}}
+\]</span> は<span
+class="math inline">\(\mathbb{R}^n\)</span>の部分空間であることを示せ．</p>
+</section>
+<section id="例題-1" class="exercise">
+<h3>例題</h3>
+<p>次の<span class="math inline">\(W\)</span>が<span
+class="math inline">\(\mathbb{R}^3\)</span>の部分空間かどうか判定せよ．</p>
+<ol type="1">
+<li><span class="math inline">\(W=\Set{\begin{pmatrix}x_1 \\ x_2 \\
+x_3\end{pmatrix}|2x_1-3x_2+x_3=0}\)</span></li>
+<li><span class="math inline">\(W=\Set{\begin{pmatrix}x_1 \\ x_2 \\
+x_3\end{pmatrix}|2x_1-3x_2+x_3=1}\)</span></li>
+<li><span class="math inline">\(W=\Set{\begin{pmatrix}x_1 \\ x_2 \\
+x_3\end{pmatrix}|2x_1-3x_2+x_3\leqq 1}\)</span></li>
+</ol>
+</section>
+<section id="定理1.2" class="thm">
+<h3>定理1.2</h3>
+<p><span class="math inline">\(W_1\)</span>，<span
+class="math inline">\(W_2\)</span>をベクトル空間<span
+class="math inline">\(V\)</span>の部分空間とする．そのとき<span
+class="math inline">\(W_1\cap W_2\)</span>も<span
+class="math inline">\(V\)</span>の部分空間である．</p>
+</section>
+<section id="証明-1" class="proof">
+<h3>証明</h3>
+<p>定理1.1を用いる．(i)，(ii)，(iii)が<span
+class="math inline">\(W_1\cap
+W_2\)</span>について成り立っていることを順に確かめればよい．</p>
+<p>(i) <span class="math inline">\(W_1\)</span>と<span
+class="math inline">\(W_2\)</span>がいずれも<span
+class="math inline">\(V\)</span>の部分空間であることから， <span
+class="math inline">\(V\)</span>の零ベクトル<span
+class="math inline">\(\bm{0}\)</span>は<span
+class="math inline">\(W_1\)</span>にも<span
+class="math inline">\(W_2\)</span>にも属している．したがって<span
+class="math inline">\(\bm{0}\in W_1\cap W_2\)</span>である．</p>
+<p>(ii) <span class="math inline">\(\bm{a}\)</span>，<span
+class="math inline">\(\bm{b}\in W_1\cap
+W_2\)</span>とする．このとき，<span
+class="math inline">\(\bm{a}\)</span>と<span
+class="math inline">\(\bm{b}\)</span>は両方とも<span
+class="math inline">\(W_1\)</span>に属しているが，ここで<span
+class="math inline">\(W_1\)</span>は部分空間だから<span
+class="math inline">\(\bm{a}+\bm{b}\in
+W_1\)</span>となる．まったく同様にして<span
+class="math inline">\(\bm{a}+\bm{b}\in W_2\)</span>もわかる．ゆえに<span
+class="math inline">\(\bm{a}+\bm{b}\in W_1\cap W_2\)</span>である．</p>
+<p>(iii) <span class="math inline">\(\bm{a}\in W_1\cap
+W_2\)</span>，<span
+class="math inline">\(k\in\mathbb{K}\)</span>とする． <span
+class="math inline">\(\bm{a}\)</span>は<span
+class="math inline">\(W_1\)</span>に属していて，<span
+class="math inline">\(W_1\)</span>が部分空間であることから<span
+class="math inline">\(k\bm{a}\in
+W_1\)</span>である．まったく同様にして<span
+class="math inline">\(k\bm{a}\in W_2\)</span>でもある．ゆえに<span
+class="math inline">\(k\bm{a}\in W_1\cap W_2\)</span>．</p>
+</section>
+</body>
+</html>

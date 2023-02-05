@@ -1,0 +1,59 @@
+body {
+	width: 92%;
+	max-width: 840px;
+	margin: 0 auto;
+	padding: 2rem 0;
+	height: 100%;
+	font-family: sans-serif, adobe-jenson-pro, dnp-shuei-mincho-pr6n, serif;
+	font-size: 18px;
+	font-weight: 400px;
+	font-style: normal;
+	line-height: 160%;
+	-webkit-text-size-adjust: 100%;
+}
+
+p { text-align: justify; margin: 0; text-indent: 1rem; }
+
+a { text-decoration: none; color: #cc0066; }
+a:hover, a:focus { text-decoration: none; background-color: #ffcccc; }
+a:visited, .pagination a { color: #990066; }
+
+em { font-style: normal; font-family: sans-serif; font-weight: bold; }
+
+h1 { margin: 2rem 0 1rem 0; }
+h2 { margin: 2rem 0 1rem 0; }
+h3 { float: left; margin: 1rem 0; }
+
+p.author { text-indent: 0; }
+
+ol { list-style: none; counter-reset: item; margin: 0 0 0 4rem; padding: 0; }
+ol > li { position: relative; text-indent: 1rem; }
+ol > li::before {
+	content: "(" counter(item, decimal) ") ";
+	counter-increment: item;
+	display: inline-block;
+	margin-left: -3rem;
+	width: 3rem;
+	text-align: right;
+	vertical-align: middle;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+ol[type="i"] > li::before { content: "(" counter(item, lower-roman) ") "; }
+ol[type="a"] > li::before { content: "(" counter(item, lower-latin) ") "; }
+
+section.dfn { margin: 1rem 0; padding: 0.5rem 1rem; background-color: #eee; }
+section.thm { margin: 1rem 0 1rem -28px; padding: 0 0 0 20px; border-left: solid 8px purple; }
+section.lem { margin: 1rem 0; }
+section.proof { margin: 1rem 0; }
+section.rem { margin: 1rem 0; }
+section.ex { margin: 1rem 0; }
+section.exercise { margin: 1rem 0; }
+section h3 { margin: 0; font-size: inherit; }
+
+@media screen and (max-width: 640px) {
+	body { font-size: 15px; }
+	ol { margin: 0 0 0 2rem; }
+	section.thm { margin: 1rem 0 1rem -16px; padding: 0 0 0 10px; border-left: solid 6px purple; }
+}

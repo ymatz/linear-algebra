@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="松本佳彦" />
+  <title>線形代数入門（第2部）</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="lecnotes.css" />
+  <script>
+	MathJax = {
+		tex: {
+			macros: {
+				bm: ["{\\boldsymbol{#1}}",1]
+			}
+		}
+	};
+  </script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">線形代数入門（第2部）</h1>
+<p class="author">松本佳彦</p>
+</header>
+<h1 id="線形独立性">線形独立性</h1>
+<h2 id="ベクトルの組の線形独立性">ベクトルの組の線形独立性</h2>
+<p>高校で学んだように，平面ベクトル<span
+class="math inline">\(\bm{a}\)</span>，<span
+class="math inline">\(\bm{b}\)</span>については，一方が他方のスカラー倍になっているとき<span
+class="math inline">\(\bm{a}\)</span>，<span
+class="math inline">\(\bm{b}\)</span>は線形従属（一次従属）であるといい，そうでないとき線形独立（一次独立）であるという．空間ベクトルについても線形独立性の概念を学んだかもしれない．これを一般のベクトル空間における概念へと拡張する．</p>
+<section id="定義" class="dfn">
+<h3>定義</h3>
+<p>ベクトル<span class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>について， <span
+class="math display">\[
+c_1\bm{a}_1+c_2\bm{a}_2+\dots+c_m\bm{a}_m=\bm{0}
+\Rightarrow c_1=c_2=\dots=c_m=0
+\]</span> が成り立つとき<span
+class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>は<em>線形独立</em>であるといい，そうでないときは<span
+class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>は<em>線形従属</em>であるという．</p>
+</section>
+<p><span
+class="math inline">\(c_1\bm{a}_1+c_2\bm{a}_2+\dots+c_m\bm{a}_m\)</span>のことを<span
+class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>の<em>線形結合</em>という．この言葉を使えば，線形独立性とは「<span
+class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>の線形結合が<span
+class="math inline">\(\bm{0}\)</span>になるのは各係数が<span
+class="math inline">\(0\)</span>である場合以外にない」ということだといえる．線形従属性とは「線形結合が<span
+class="math inline">\(\bm{0}\)</span>になる場合が各係数が<span
+class="math inline">\(0\)</span>であるとき以外にもある」ということである．</p>
+<p>線形独立性を言い表す方法は他にもあるが，上記の定義を採用するメリットは，次の事実が直ちにわかることにある．</p>
+<section id="定理2.1" class="thm">
+<h3>定理2.1</h3>
+<p>ベクトル<span class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>が線形独立であるとする．そのとき，任意に与えられたベクトル<span
+class="math inline">\(\bm{b}\)</span>をそれらの線形結合として <span
+class="math display">\[
+\bm{b}=c_1\bm{a}_1+c_2\bm{a}_2+\dots+c_m\bm{a}_m
+\]</span> と表す仕方は，（仮に存在するとしても）ただ一通りである．</p>
+</section>
+<section id="証明" class="proof">
+<h3>証明</h3>
+<p>見かけ上異なる2通りの表し方 <span class="math display">\[
+\bm{b}=c_1\bm{a}_1+c_2\bm{a}_2+\dots+c_m\bm{a}_m
+=c&#39;_1\bm{a}_1+c&#39;_2\bm{a}_2+\dots+c&#39;_m\bm{a}_m
+\]</span> があったとする．そのとき <span class="math display">\[
+(c_1-c&#39;_1)\bm{a}_1+(c_2-c&#39;_2)\bm{a}_2+\dots+(c_m-c&#39;_m)\bm{a}_m=\bm{0}
+\]</span> である．<span class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>は線形独立なので各<span
+class="math inline">\(i\)</span>について<span
+class="math inline">\(c_i-c&#39;_i=0\)</span>，すなわち<span
+class="math inline">\(c_i=c&#39;_i\)</span>でなければならない．つまり初めに書いた<span
+class="math inline">\(\bm{b}\)</span>の2通りの表し方は実際には同じものである．</p>
+</section>
+<section id="注" class="rem">
+<h3>注</h3>
+<p>(1) <span class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>のうちに<span
+class="math inline">\(\bm{0}\)</span>があれば，これらは線形従属である．というのは，もし<span
+class="math inline">\(\bm{a}_i=\bm{0}\)</span>ならば <span
+class="math display">\[
+0\bm{a}_1+\dots+0\bm{a}_{i-1}+1\bm{a}_i+0\bm{a}_{i+1}+\dots+0\bm{a}_m=\bm{0}
+\]</span> が成り立つからである．</p>
+<p>(2) 1個のベクトル<span
+class="math inline">\(\bm{a}\)</span>が単独で線形独立なのは，<span
+class="math inline">\(\bm{a}\not=\bm{0}\)</span>であることと同値である．</p>
+</section>
+<p>線形独立性の判定について考えておく．次の例題で見るように，数ベクトルの組に対する線形独立性の判定は，実質的には連立一次方程式を解くことに帰着される．</p>
+<section id="例題" class="exercise">
+<h3>例題</h3>
+<p><span
+class="math inline">\(\mathbb{R}^4\)</span>において，次の3個のベクトルが線形独立かどうか判定せよ．
+<span class="math display">\[
+\bm{a}_1=\begin{pmatrix}3 \\ 1 \\ 0 \\ 2\end{pmatrix},\qquad
+\bm{a}_1=\begin{pmatrix}1 \\ 0 \\ 1 \\ 1\end{pmatrix},\qquad
+\bm{a}_3=\begin{pmatrix}-1 \\ 2 \\ 2 \\ 3\end{pmatrix}
+\]</span></p>
+</section>
+<p>線形従属性は次のようにも言い換えられる．これが平面ベクトル2個の場合についてよく知っている定義の一般化にあたる．</p>
+<section id="定理2.2" class="thm">
+<h3>定理2.2</h3>
+<p><span class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>が線形従属であるためには，いずれかの<span
+class="math inline">\(\bm{a}_i\)</span>が残りの<span
+class="math inline">\(m-1\)</span>個の<span
+class="math inline">\(\bm{a}_j\)</span>（<span
+class="math inline">\(j\not=i\)</span>）の線形結合として表せることが必要十分である．</p>
+</section>
+<section id="証明-1" class="proof">
+<h3>証明</h3>
+<p>まず必要性を示す．仮に<span
+class="math inline">\(\bm{a}_1\)</span>を残りの<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>の線形結合として <span
+class="math display">\[
+\bm{a}_1=c_2\bm{a}_2+\dots+c_m\bm{a}_m
+\]</span> と表せたとすると， <span class="math display">\[
+\bm{a}_1-c_2\bm{a}_2-\dots-c_m\bm{a}_m=\bm{0}
+\]</span> である．これは<span
+class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>の線形結合が<span
+class="math inline">\(\bm{0}\)</span>に等しいという式であり，しかも<span
+class="math inline">\(\bm{a}_1\)</span>の係数は<span
+class="math inline">\(0\)</span>でない．ゆえにこのとき<span
+class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>は線形従属である． <span
+class="math inline">\(\bm{a}_1\)</span>以外の<span
+class="math inline">\(\bm{a}_i\)</span>が残りの<span
+class="math inline">\(m-1\)</span>個のベクトルの線形結合として表せる場合も同様である．</p>
+<p>十分性を示す．<span class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>が線形従属だとすると， <span
+class="math inline">\(c_1=c_2=\dots=c_m=0\)</span>ではないスカラー<span
+class="math inline">\(c_1\)</span>，<span
+class="math inline">\(c_2\)</span>，……，<span
+class="math inline">\(c_m\)</span>の組を <span class="math display">\[
+c_1\bm{a}_1+c_2\bm{a}_2+\dots+c_m\bm{a}_m=\bm{0}
+\]</span> となるように選ぶことができる．<span
+class="math inline">\(0\)</span>でない係数を一つ選んで<span
+class="math inline">\(c_i\)</span>としよう．すると <span
+class="math display">\[
+c_i\bm{a}_i=-\sum_{j\not=i}c_j\bm{a}_j
+\]</span> だから，<span
+class="math inline">\(\displaystyle\bm{a}_i=-\sum_{j\not=i}\frac{c_j}{c_i}\bm{a}_j\)</span>である．こうして<span
+class="math inline">\(\bm{a}_i\)</span>を残りの<span
+class="math inline">\(m-1\)</span>個のベクトルの線形結合として表すことができた．</p>
+</section>
+<h2
+id="線形独立性に関するいくつかの事実">線形独立性に関するいくつかの事実</h2>
+<p>線形独立性について知っておきたいことをいくつか挙げる．</p>
+<section id="定理2.3" class="thm">
+<h3>定理2.3</h3>
+<p><span class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>が線形独立ならば，それらのうちいくつかを抜き出しても線形独立である．</p>
+</section>
+<p>これは当たり前のことにすぎない．たとえば<span
+class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_r\)</span>を抜き出したとしよう．証明したいのは
+<span class="math display">\[
+c_1\bm{a}_1+c_2\bm{a}_2+\dots+c_r\bm{a}_r=\bm{0}
+\Rightarrow c_1=c_2=\dots=c_r=0
+\]</span> である．そこで<span
+class="math inline">\(c_1\bm{a}_1+c_2\bm{a}_2+\dots+c_r\bm{a}_r=\bm{0}\)</span>であると仮定すれば，そのことは当然ながら
+<span class="math display">\[
+c_1\bm{a}_1+c_2\bm{a}_2+\dots+c_r\bm{a}_r+0\bm{a}_{r+1}+\dots+0\bm{a}_m=\bm{0}
+\]</span> を意味する．<span
+class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>が線形独立なので，左辺の各係数はすべて<span
+class="math inline">\(0\)</span>でなければならない．ゆえに<span
+class="math inline">\(c_1=c_2=\dots=c_r=0\)</span>である．他のベクトルを抜き出した場合も同様．</p>
+<section id="注-1" class="rem">
+<h3>注</h3>
+<p>定理2.3の対偶をとればわかるように，<span
+class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>からいくつかを抜き出したとき線形従属になるのなら，<span
+class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>全体も線形従属である．</p>
+</section>
+<section id="定理2.4" class="thm">
+<h3>定理2.4</h3>
+<p><span class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>が線形独立で，これに<span
+class="math inline">\(\bm{a}_{m+1}\)</span>を付け加えると線形従属となるとき，<span
+class="math inline">\(\bm{a}_{m+1}\)</span>は<span
+class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>の線形結合として表される．</p>
+</section>
+<p>この定理の意義は次のとおりである．定理2.2で見たように，<span
+class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>，<span
+class="math inline">\(\bm{a}_{m+1}\)</span>が線形従属ならば少なくとも一つのベクトルが他の<span
+class="math inline">\(m\)</span>個のベクトルの線形結合として表されるけれども，一般的にはどのベクトルがそんなふうに表されるかはわからない．定理2.4が意味していることは，線形従属な<span
+class="math inline">\(m+1\)</span>個のベクトルのうち<span
+class="math inline">\(m\)</span>個が線形独立である状況が与えられれば，「残りの1個が他の線形結合として表される」と具体的にわかるということである．</p>
+<section id="定理2.4の証明" class="proof">
+<h3>定理2.4の証明</h3>
+<p><span class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>，<span
+class="math inline">\(\bm{a}_{m+1}\)</span>が線形従属だという仮定から，
+<span class="math display">\[
+c_1\bm{a}_1+c_2\bm{a}_2+\dots+c_m\bm{a}_m+c_{m+1}\bm{a}_{m+1}=\bm{0}
+\]</span> をみたすような，<span
+class="math inline">\(c_1=c_2=\dots=c_m=c_{m+1}=0\)</span>ではないスカラーの組<span
+class="math inline">\(c_1\)</span>，<span
+class="math inline">\(c_2\)</span>，……，<span
+class="math inline">\(c_m\)</span>，<span
+class="math inline">\(c_{m+1}\)</span>をとれる．ここでもし<span
+class="math inline">\(c_{m+1}=0\)</span>であるとするとおかしなことになる．というのは，そのとき
+<span class="math display">\[
+c_1\bm{a}_1+c_2\bm{a}_2+\dots+c_m\bm{a}_m=\bm{0}
+\]</span> かつ「<span
+class="math inline">\(c_1=c_2=\dots=c_m=0\)</span>ではない」ことになるが，それは<span
+class="math inline">\(\bm{a}_1\)</span>，<span
+class="math inline">\(\bm{a}_2\)</span>，……，<span
+class="math inline">\(\bm{a}_m\)</span>が線形独立であることに反するからである．ゆえに<span
+class="math inline">\(c_{m+1}\not=0\)</span>でなければならない．したがってまた
+<span class="math display">\[
+\bm{a}_{m+1}=-\sum_{j=1}^m\frac{c_j}{c_{m+1}}\bm{a}_j
+\]</span> である．</p>
+</section>
+<p>最後に例題の形で一つ注意を述べる．</p>
+<section id="例題-1" class="exercise">
+<h3>例題</h3>
+<p><span class="math inline">\(\bm{a}\)</span>，<span
+class="math inline">\(\bm{b}\)</span>，<span
+class="math inline">\(\bm{c}\)</span>が「どの2個を選んでもそれらは線形独立である」という性質をもつとしても，<span
+class="math inline">\(\bm{a}\)</span>，<span
+class="math inline">\(\bm{b}\)</span>，<span
+class="math inline">\(\bm{c}\)</span>全体は必ずしも線形独立とは限らない．それを例を挙げることによって示せ．</p>
+</section>
+<p>これは3個より多くのベクトルについても同様である．考えてみてほしい．</p>
+</body>
+</html>

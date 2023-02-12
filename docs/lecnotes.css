@@ -4,9 +4,9 @@ body {
 	margin: 0 auto;
 	padding: 2rem 0;
 	height: 100%;
-	font-family: sans-serif, adobe-jenson-pro, dnp-shuei-mincho-pr6n, serif;
+	font-family: sans-serif;
 	font-size: 18px;
-	font-weight: 400px;
+	font-weight: 400;
 	font-style: normal;
 	line-height: 160%;
 	-webkit-text-size-adjust: 100%;
@@ -18,7 +18,7 @@ a { text-decoration: none; color: #cc0066; }
 a:hover, a:focus { text-decoration: none; background-color: #ffcccc; }
 a:visited, .pagination a { color: #990066; }
 
-em { font-style: normal; font-family: sans-serif; font-weight: bold; }
+em { font-style: normal; font-weight: bold; }
 
 h1 { margin: 2rem 0 1rem 0; }
 h2 { margin: 2rem 0 1rem 0; }
@@ -32,8 +32,8 @@ ol > li::before {
 	content: "(" counter(item, decimal) ") ";
 	counter-increment: item;
 	display: inline-block;
-	margin-left: -3rem;
-	width: 3rem;
+	margin-left: -4rem;
+	width: 4rem;
 	text-align: right;
 	vertical-align: middle;
 	position: absolute;
